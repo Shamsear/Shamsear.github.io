@@ -231,49 +231,54 @@
          </div>
       </div>
       <div class="row once-in">
-         <div class="flex-col">
-            <form class="form" method="post" action="contact.html" enctype="multipart/form-data" novalidate>
-               <div class="website-field">
-                  <label class="label" for="tel">Phone Number</label>
-                  <input class="field" type="text" id="form-tel" name="tel" tabindex="-1">
-               </div>
-               <div class="form-col">
-                  <h5>01</h5>
-                  <label class="label" for="name">What's your name?</label>
-                  <input class="field" type="text" id="form-name" name="name" value="" required placeholder="John Doe *">
-                                 </div>
-               <div class="form-col">
-                  <h5>02</h5>
-                  <label class="label" for="email">What's your email?</label>
-                  <input class="field" type="email" id="form-email" name="email" value="" required placeholder="john@doe.com *">
-                                 </div>
-               <div class="form-col">
-                  <h5>03</h5>
-                  <label class="label" for="email">What's the name of your organization?</label>
-                  <input class="field" type="text" id="form-company" name="company" value="" required placeholder="John & Doe ®">
-                                 </div>
-               <div class="form-col">
-                  <h5>04</h5>
-                  <label class="label" for="email">What services are you looking for?</label>
-                  <input class="field" type="text" id="form-service" name="service" value="" required placeholder="Photo Editing, Graphic Designing ...">
-                                 </div>
-               <div class="form-col">
-                  <h5>05</h5>
-                  <label class="label" for="message">Your message</label>
-                  <textarea class="field" type="text" id="form-message" name="message" rows="8"  required placeholder="Hello Dennis, can you help me with ... *"></textarea>
-                                 </div>
-               <div class="btn-contact-send">
-                  <div class="btn btn-round" data-scroll data-scroll-speed="2" data-scroll-offset="-50%, 0%">
-                     <div class="btn-click magnetic" data-strength="100" data-strength-text="50">
-                        <div class="btn-fill"></div>
-                        <span class="btn-text">
-                           <input type="submit" name="submit" value="Send it!" class="form-btn">
-                        </span>
-                     </div>
-                  </div>
-               </div>
+        <div class="flex-col">
+            <form class="form" method="post" action="https://formspree.io/f/xayrgrev" enctype="multipart/form-data" novalidate id="contactForm">
+                <div class="website-field">
+                    <label class="label" for="tel">Phone Number</label>
+                    <input class="field" type="text" id="form-tel" name="tel" tabindex="-1">
+                </div>
+                <div class="form-col">
+                    <h5>01</h5>
+                    <label class="label" for="name">What's your name?</label>
+                    <input class="field" type="text" id="form-name" name="name" value="" required placeholder="John Doe *">
+                    <div class="error" id="error-name"></div>
+                </div>
+                <div class="form-col">
+                    <h5>02</h5>
+                    <label class="label" for="email">What's your email?</label>
+                    <input class="field" type="email" id="form-email" name="email" value="" required placeholder="john@doe.com *">
+                    <div class="error" id="error-email"></div>
+                </div>
+                <div class="form-col">
+                    <h5>03</h5>
+                    <label class="label" for="company">What's the name of your organization?</label>
+                    <input class="field" type="text" id="form-company" name="company" value="" required placeholder="John & Doe ®">
+                    <div class="error" id="error-company"></div>
+                </div>
+                <div class="form-col">
+                    <h5>04</h5>
+                    <label class="label" for="service">What services are you looking for?</label>
+                    <input class="field" type="text" id="form-service" name="service" value="" required placeholder="Photo Editing, Graphic Designing ...">
+                    <div class="error" id="error-service"></div>
+                </div>
+                <div class="form-col">
+                    <h5>05</h5>
+                    <label class="label" for="message">Your message</label>
+                    <textarea class="field" id="form-message" name="message" rows="8" required placeholder="Hello Dennis, can you help me with ... *"></textarea>
+                    <div class="error" id="error-message"></div>
+                </div>
+                <div class="btn-contact-send">
+                    <div class="btn btn-round" data-scroll data-scroll-speed="2" data-scroll-offset="-50%, 0%">
+                        <div class="btn-click magnetic" data-strength="100" data-strength-text="50">
+                            <div class="btn-fill"></div>
+                            <span class="btn-text">
+                                <input type="submit" name="submit" value="Send it!" class="form-btn">
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </form>
-         </div>
+        </div>
          <div class="flex-col">
             <h5>Contact Details</h5>
             <ul class="links-wrap">
@@ -285,9 +290,9 @@
                   </a>
                </li>
                <li class="btn btn-link btn-link-external">
-                  <a href="tel:+91 918821727" class="btn-click magnetic" data-strength="20" data-strength-text="10">
+                  <a href="tel:+91 9188217274" class="btn-click magnetic" data-strength="20" data-strength-text="10">
                      <span class="btn-text">
-                        <span class="btn-text-inner">+91 918821727</span>
+                        <span class="btn-text-inner">+91 9188217274</span>
                      </span>
                   </a>
                </li>
@@ -392,4 +397,90 @@
         <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.6.1/dist/lazyload.min.js"></script>
         
         <script src="/assets/js/locomotive-scroll.min.js"></script>        <script defer src="/assets/js/index-new.js"></script>    </body>
+        <!-- Your HTML form code -->
+
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+    
+        // Clear previous errors
+        document.querySelectorAll('.error').forEach(function(el) {
+            el.textContent = '';
+        });
+    
+        let hasError = false;
+    
+        // Validation logic
+        const name = document.getElementById('form-name');
+        if (!name.value) {
+            document.getElementById('error-name').textContent = 'Name is required.';
+            hasError = true;
+        }
+    
+        const email = document.getElementById('form-email');
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email.value) {
+            document.getElementById('error-email').textContent = 'Email is required.';
+            hasError = true;
+        } else if (!emailPattern.test(email.value)) {
+            document.getElementById('error-email').textContent = 'Please enter a valid email address.';
+            hasError = true;
+        }
+    
+        const company = document.getElementById('form-company');
+        if (!company.value) {
+            document.getElementById('error-company').textContent = 'Company name is required.';
+            hasError = true;
+        }
+    
+        const service = document.getElementById('form-service');
+        if (!service.value) {
+            document.getElementById('error-service').textContent = 'Service description is required.';
+            hasError = true;
+        }
+    
+        const message = document.getElementById('form-message');
+        if (!message.value) {
+            document.getElementById('error-message').textContent = 'Message is required.';
+            hasError = true;
+        }
+    
+        // If there are errors, do not proceed with form submission
+        if (hasError) {
+            return;
+        }
+    
+        // Prepare form data
+        const formData = new FormData(this);
+    
+        // Submit the form data via AJAX
+        fetch('https://formspree.io/f/xayrgrev', { // Replace with your Formspree form ID
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Message sent successfully!');
+                // Optionally, you can reset the form here
+                this.reset();
+            } else {
+                response.json().then(data => {
+                    if (data.errors) {
+                        alert(data.errors.map(error => error.message).join(", "));
+                    } else {
+                        alert('An error occurred. Please try again.');
+                    }
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        });
+    });
+    </script>
+    
 </html>
